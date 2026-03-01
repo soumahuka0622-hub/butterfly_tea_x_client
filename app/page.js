@@ -52,21 +52,31 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="card">
+      <section className="card hero">
+        <span className="chip">NO TIMELINE MODE</span>
         <h1>Butterfly Tea X Client</h1>
-        <p>タイムラインを表示しない、X連携専用ツールです。</p>
-        <small>投稿機能はOFFにしています。ログインとユーザー確認のみ利用できます。</small>
+        <p>タイムラインを見ずに使うための、X連携専用ツールです。</p>
+        <small>投稿機能はOFFです。ログインとアカウント確認のみ利用できます。</small>
         <div className="row">
-          <a className="link-btn" href="/api/auth/x/login">
+          <a className="link-btn primary" href="/api/auth/x/login">
             Xでログイン
           </a>
-          <button onClick={checkMe} disabled={loading}>
+          <button className="ghost" onClick={checkMe} disabled={loading}>
             ユーザー確認
           </button>
-          <button onClick={logout} disabled={loading}>
+          <button className="ghost" onClick={logout} disabled={loading}>
             ログアウト
           </button>
         </div>
+      </section>
+
+      <section className="card">
+        <h2>使い方</h2>
+        <ol className="steps">
+          <li>「Xでログイン」から認可を開始する</li>
+          <li>戻ったら「ユーザー確認」を押す</li>
+          <li>利用終了時に「ログアウト」する</li>
+        </ol>
       </section>
 
       <section className="card">
