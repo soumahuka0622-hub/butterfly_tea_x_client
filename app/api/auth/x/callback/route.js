@@ -43,7 +43,7 @@ export async function GET(request) {
 
     const basic = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 
-    const tokenResp = await fetch('https://api.x.com/2/oauth2/token', {
+    let tokenResp = await fetch('https://api.x.com/2/oauth2/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -53,7 +53,24 @@ export async function GET(request) {
       cache: 'no-store',
     });
 
-    const tokenJson = await tokenResp.json();
+    let tokenJson = await tokenResp.json();
+
+    // Fallback for PKCE public-client style apps where Basic auth is not accepted.
+    if (
+      !tokenResp.ok &&
+      tokenResp.status === 401 &&
+      tokenJson?.error === 'unauthorized_client'
+    ) {
+      tokenResp = await fetch('https://api.x.com/2/oauth2/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body,
+        cache: 'no-store',
+      });
+      tokenJson = await tokenResp.json();
+    }
 
     if (!tokenResp.ok) {
       return NextResponse.json(
