@@ -13,7 +13,7 @@ export async function GET(request) {
         {
           ok: false,
           step: 'authorize',
-          error: oauthError,
+          error: `X認可エラー: ${oauthError}`,
           error_description: url.searchParams.get('error_description') ?? null,
         },
         { status: 400 }
@@ -21,14 +21,14 @@ export async function GET(request) {
     }
 
     if (!code || !state) {
-      return NextResponse.json({ ok: false, error: 'Missing code/state' }, { status: 400 });
+      return NextResponse.json({ ok: false, error: '認証パラメータ(code/state)が不足しています。' }, { status: 400 });
     }
 
     const { clientId, clientSecret, redirectUri } = getRequiredEnv();
     const verifier = getCodeVerifierFromSignedState(state, clientSecret);
     if (!verifier) {
       return NextResponse.json(
-        { ok: false, error: 'Invalid state or expired login session' },
+        { ok: false, error: '認証セッションの有効期限が切れたか、stateが不正です。再ログインしてください。' },
         { status: 400 }
       );
     }
@@ -57,7 +57,7 @@ export async function GET(request) {
 
     if (!tokenResp.ok) {
       return NextResponse.json(
-        { ok: false, step: 'token', status: tokenResp.status, details: tokenJson },
+        { ok: false, step: 'token', status: tokenResp.status, error: 'トークン取得に失敗しました。', details: tokenJson },
         { status: 400 }
       );
     }
@@ -70,7 +70,7 @@ export async function GET(request) {
 
     if (!meResp.ok) {
       return NextResponse.json(
-        { ok: false, step: 'users/me', status: meResp.status, details: meJson },
+        { ok: false, step: 'users/me', status: meResp.status, error: 'ユーザー情報取得に失敗しました。', details: meJson },
         { status: 400 }
       );
     }
@@ -94,6 +94,6 @@ export async function GET(request) {
 
     return response;
   } catch (error) {
-    return NextResponse.json({ ok: false, error: String(error) }, { status: 500 });
+    return NextResponse.json({ ok: false, error: `サーバーエラー: ${String(error)}` }, { status: 500 });
   }
 }

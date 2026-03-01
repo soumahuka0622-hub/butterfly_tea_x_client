@@ -6,6 +6,7 @@ A minimal Next.js prototype to connect an X account with OAuth 2.0 (PKCE) and ve
 - OAuth 2.0 login with X (`/api/auth/x/login`)
 - Callback + token exchange (`/api/auth/x/callback`)
 - Verify current user (`/api/x/me`)
+- Logout (`/api/auth/logout`)
 
 ## What this app intentionally does not do
 - Home timeline fetch
@@ -40,8 +41,17 @@ A minimal Next.js prototype to connect an X account with OAuth 2.0 (PKCE) and ve
 
 ## Notes
 - Access token is stored in an HTTP-only cookie for this local prototype.
-- Logging out is currently done by clearing browser cookies for `localhost`.
+- Logout button clears auth cookies.
 - Do not commit `.env.local`.
+
+## Deploy (Vercel)
+1. Import this repository in Vercel.
+2. Set Environment Variables:
+   - `X_CLIENT_ID`
+   - `X_CLIENT_SECRET`
+   - `X_REDIRECT_URI` (example: `https://YOUR_DOMAIN/api/auth/x/callback`)
+3. In X Developer Console, add the same Callback URL.
+4. Redeploy.
 
 ## Legacy files
 The previous static prototype files remain in the repo:

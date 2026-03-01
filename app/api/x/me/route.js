@@ -6,7 +6,10 @@ export async function GET() {
   const accessToken = cookieStore.get('x_access_token')?.value;
 
   if (!accessToken) {
-    return NextResponse.json({ ok: false, error: 'Not logged in' }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: '未ログインです。先に「Xでログイン」を実行してください。' },
+      { status: 401 }
+    );
   }
 
   const meResp = await fetch('https://api.x.com/2/users/me', {

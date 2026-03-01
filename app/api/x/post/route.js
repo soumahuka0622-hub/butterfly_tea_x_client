@@ -4,7 +4,7 @@ export async function POST() {
   return NextResponse.json(
     {
       ok: false,
-      error: 'Posting is disabled in this build.',
+      error: 'このアプリでは投稿機能を無効化しています。',
       code: 'POST_DISABLED',
     },
     { status: 403 }
