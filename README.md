@@ -7,11 +7,19 @@ A minimal Next.js prototype to connect an X account with OAuth 2.0 (PKCE) and ve
 - Callback + token exchange (`/api/auth/x/callback`)
 - Verify current user (`/api/x/me`)
 - Logout (`/api/auth/logout`)
+- Limited feed mode by selected usernames (`/api/x/limited-feed`)
 
 ## What this app intentionally does not do
 - Home timeline fetch
 - For-you/following feed UI
 - Posting to X (`/api/x/post` is disabled)
+
+## Limited feed mode
+- You can input specific usernames and fetch only their latest posts.
+- This mode does not call home timeline endpoints.
+- Constraints:
+  - Max users per request: 8
+  - Max tweets per user: 5
 
 ## Requirements
 - Node.js 20+
