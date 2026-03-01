@@ -232,6 +232,17 @@ label {
   line-height: 1.6;
 }
 
+.link-inline {
+  color: #0b4f4f;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  word-break: break-all;
+}
+
+.link-inline:hover {
+  opacity: 0.8;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
