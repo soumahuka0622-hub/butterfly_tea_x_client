@@ -1,0 +1,105 @@
+:root {
+  --bg: #f7f4ed;
+  --fg: #1f2937;
+  --accent: #0f766e;
+  --panel: #fffaf2;
+  --border: #d6d3d1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  background:
+    radial-gradient(circle at top right, #d9f99d 0, rgba(217, 249, 157, 0) 45%),
+    radial-gradient(circle at bottom left, #99f6e4 0, rgba(153, 246, 228, 0) 40%),
+    var(--bg);
+  color: var(--fg);
+}
+
+main {
+  width: min(720px, 92vw);
+  margin: 48px auto;
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+p {
+  margin: 6px 0;
+  line-height: 1.55;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+.link-btn {
+  background: var(--accent);
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 10px;
+  background: white;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  padding: 12px;
+  background: #111827;
+  color: #d1fae5;
+  border-radius: 10px;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+small {
+  color: #6b7280;
+}

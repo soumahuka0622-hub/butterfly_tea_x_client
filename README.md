@@ -1,35 +1,50 @@
-# with the dawn breaking - Prototype
+# Butterfly Tea X Client Prototype
 
-A read-only mobile-first blog prototype for [butterflyandtea.com](https://butterflyandtea.com/).
-Designed to provide a serene, immersive reading experience with a focus on aesthetics and content.
+A minimal Next.js prototype to connect an X account with OAuth 2.0 (PKCE) and verify user identity without showing a timeline.
 
-## Features
-- **Responsive Design**: Mobile-first layout with a clean, purple-themed UI.
-- **Article Reader**: Distraction-free reading view with smooth transitions.
-- **Category Navigation**: Browse articles by categories (Deep Consciousness, Spiritual, History, etc.).
-- **Search**: Full-text search for articles by title and content.
-- **BGM Support**: Optional background ambient music for an immersive experience.
-- **Sidebar Menu**: Easy navigation between Home, Categories, and About sections.
+## What this app does
+- OAuth 2.0 login with X (`/api/auth/x/login`)
+- Callback + token exchange (`/api/auth/x/callback`)
+- Verify current user (`/api/x/me`)
 
-## Technologies
-- **HTML5**: Semantic structure.
-- **CSS3**: Custom properties, Flexbox/Grid, and animations (no frameworks).
-- **JavaScript (ES6+)**: SPA-like navigation, dynamic content rendering, and search logic.
-- **Phosphor Icons**: Lightweight, clean icon set.
+## What this app intentionally does not do
+- Home timeline fetch
+- For-you/following feed UI
+- Posting to X (`/api/x/post` is disabled)
 
-## Local Setup
-1.  Clone the repository.
-2.  Open `index.html` in your browser.
-    - *Note*: For BGM to work in Chrome, you may need to interact with the page first due to autoplay policies.
+## Requirements
+- Node.js 20+
+- X Developer app with OAuth 2.0 enabled (Web App)
+- Callback URL set to: `http://localhost:3000/api/auth/x/callback`
 
-## Deployment
-This project is static and can be deployed to any static site host (Vercel, Netlify, GitHub Pages).
+## Setup
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Create environment file:
+   ```bash
+   cp .env.example .env.local
+   ```
+3. Fill `.env.local`:
+   ```env
+   X_CLIENT_ID=...
+   X_CLIENT_SECRET=...
+   X_REDIRECT_URI=http://localhost:3000/api/auth/x/callback
+   ```
+4. Start dev server:
+   ```bash
+   npm run dev
+   ```
+5. Open `http://localhost:3000`
 
-### Vercel (Recommended)
-You can deploy this project instantly using Vercel:
+## Notes
+- Access token is stored in an HTTP-only cookie for this local prototype.
+- Logging out is currently done by clearing browser cookies for `localhost`.
+- Do not commit `.env.local`.
 
-1.  Install Vercel CLI (optional) or use `npx`:
-    ```bash
-    npx vercel
-    ```
-2.  Follow the prompts to log in and deploy.
+## Legacy files
+The previous static prototype files remain in the repo:
+- `index.html`
+- `app.js`
+- `styles.css`
