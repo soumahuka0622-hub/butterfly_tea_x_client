@@ -66,7 +66,7 @@ export default function HomePage() {
       <section className="card hero">
         <span className="chip">NO TIMELINE MODE</span>
         <h1>Butterfly Tea X Client</h1>
-        <p>タイムラインを見ずに使うための、X連携専用ツールです。</p>
+        <p>タイムラインを見ずに使う為の、X連携専用ツールです。</p>
         <small>投稿機能はOFFです。ログインとアカウント確認のみ利用できます。</small>
         <div className="row">
           <a className="link-btn primary" href="/api/auth/x/login">
