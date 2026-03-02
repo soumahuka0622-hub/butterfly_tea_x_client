@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Butterfly Tea Icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f6d5a" />
+      <stop offset="100%" stop-color="#0b4f4f" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)" />
+  <g fill="#f8f6ef">
+    <path d="M20 24c0-4 3-7 7-7 3 0 6 2 7 5-2 0-4 1-6 3-2 2-3 4-3 6-3 0-5-3-5-7z" />
+    <path d="M44 24c0-4-3-7-7-7-3 0-6 2-7 5 2 0 4 1 6 3 2 2 3 4 3 6 3 0 5-3 5-7z" />
+    <path d="M24 43h16c0 3-2 5-5 5h-6c-3 0-5-2-5-5z" />
+    <path d="M32 22c1 0 2 1 2 2v15h-4V24c0-1 1-2 2-2z" />
+  </g>
+</svg>
