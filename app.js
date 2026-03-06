@@ -2,6 +2,10 @@
 let posts = [];
 let categories = [];
 let currentPage = 'home';
+const additionalCategoryLinks = [
+    { name: 'AI時代', url: 'https://butterflyandtea.com/tag/the-ai-era/' },
+    { name: '食と身体の安全', url: 'https://butterflyandtea.com/tag/food-and-body-safety/' }
+];
 
 // DOM Elements
 const mainContent = document.getElementById('main-content');
@@ -308,12 +312,20 @@ function renderCategories() {
     <div class="category-name">${cat}</div>
         </div>
     `).join('');
+    const additionalCategoriesHtml = additionalCategoryLinks
+        .filter(extra => !categories.includes(extra.name))
+        .map(extra => `
+    <a class="category-card" href="${extra.url}" target="_blank" rel="noopener noreferrer">
+    <div class="category-name">${extra.name}</div>
+        </a>
+    `).join('');
 
     mainContent.innerHTML = `
     <div class="categories-view">
             <h2 class="section-title">Categories</h2>
             <div class="category-grid">
                 ${categoriesHtml}
+                ${additionalCategoriesHtml}
             </div>
         </div>
     `;
